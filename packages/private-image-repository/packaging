@@ -1,0 +1,20 @@
+# abort script on any command that exits with a non zero value
+set -e
+
+PKG_NAME="private-image-repository"
+NEED_PKGS=(
+  "libsystemd-login0_204-5ubuntu20.28_amd64.deb" 
+  "dbus_1.6.18-0ubuntu4_amd64.deb" 
+  "upstart_1.12.1-0ubuntu8_amd64.deb" 
+  "lsb-base_4.1+Debian11ubuntu7_all.deb" 
+  "docker-registry_2.3.0_ds1-1_amd64.deb" 
+)
+
+for PKG in "${NEED_PKGS[@]}"; do
+  cp -r ${BOSH_COMPILE_TARGET}/${PKG_NAME}/${PKG} ${BOSH_INSTALL_TARGET}
+done
+
+# IN PACKAGING, CANNOT INSTALL DEB FILE.
+
+#EOF
+
